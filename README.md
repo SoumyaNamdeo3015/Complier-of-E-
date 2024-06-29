@@ -38,17 +38,17 @@ The `ret` node in the expression tree will have the type `RET`.
 
 ### Functions to Implement (parser.cpp)
 
-- `parse(vector<string> expression)`: Read an input vector of tokenized expression, parse it and convert it to a parse tree and push the root into `expr_trees`. Also, make necessary changes to the `symtable` depending upon the expression (if it’s a variable assignment then insert the symbol, for a delete statement it deletes the symbol, and does nothing to the `symtable` for the return statement).
+- `parse(vector<string> expression)`: Read an input vector of tokenized expression, parse it and convert it to a parse tree and push the root into `expr_trees`. Also, made necessary changes to the `symtable` depending upon the expression (if it’s a variable assignment then insert the symbol, for a delete statement it deletes the symbol, and does nothing to the `symtable` for the return statement).
 
 **Note:**
-- You can assign any garbage value to the nodes of type `RET`, `DEL`, or `:=`; their values don’t matter like other operator nodes. For nodes of type `VAR` and `VAL`, we would only check parameters `id` and `num` respectively.
+- We can assign any garbage value to the nodes of type `RET`, `DEL`, or `:=`; their values don’t matter like other operator nodes.
 - Immutability no longer holds now; that is, a variable can be reassigned a value. It’s also not necessary for a variable to be deleted before reassigning.
 
 # Improving the Expression Evaluator
 
 In previous project , we implemented an expression evaluator for the language E++. For storing the values of variables, we had created a symbol table using Binary Search Trees. What if the BST used to implement the symbol table is unbalanced? The lookup could then be O(n) in the worst case, where n is the number of variables in the program. In turn, n can be as large as the code, which can end up being a huge overhead.
 
-Now task is to convert the BSTs we implemented for into AVL Trees. Note that now each node will no longer store a value since we are not evaluating but compiling the code. Instead, it will store an address, as described below. 
+Now the task is to convert the BSTs we implemented for into AVL Trees. Note that now each node will no longer store a value since we are not evaluating but compiling the code. Instead, it will store an address, as described below. 
 
 ## The AVL Tree Node Class (symnode.h)
 
@@ -63,7 +63,7 @@ Now task is to convert the BSTs we implemented for into AVL Trees. Note that now
 
 ### Functions  to Implement (in symnode.cpp)
 
-Any unbalanced tree can be balanced by using simple four rotations. You are free to implement and use these as your helper functions in the symbol table or not use them at all. If you are not going to implement any of the given optional functions, then do not delete their definitions; just write `return NULL` in those.
+Any unbalanced tree can be balanced by using simple four rotations. 
 
 - `LeftLeftRotation()`: Performs the single left rotation on the node and returns a pointer to the new root.
 - `RightRightRotation()`: Performs the single right rotation on the node and returns a pointer to the new root.
@@ -94,7 +94,7 @@ The code in the target language generated will assume the following architecture
 
 Essentially, the machine will go through the program in the target language Targ, perform some operations on the operands in the stack, and finally store the results in the memory.
 
-**Note:** There is no implement for stack machine. We just need to generate code for parse tree in the Targ language assuming it will execute on a stack machine as described.
+**Note:** There is no implement for stack machine in this project. We have just  generated code for parse tree in the Targ language assuming it will execute on a stack machine as described.
 
 ## Targ Syntax
 
@@ -116,13 +116,13 @@ The syntax of the language Targ is given below.
 
 ## Generating the Code
 
-To generate the code in the target language, we will need to recursively iterate over the parse tree you created in Part 2.
+To generate the code in the target language, we will need to recursively 
+ iterate over the parse tree you created earlier.
 
 ## Handling Memory Allocation of Variables
 
 When we do variable assignment in the E++ expressions, we don’t assign the variables a specific memory address. Instead, this part is handled by the compiler itself. We will maintain a vector (in a stack fashion) of available free memory indexes, delete or insert the memory index from the end if a new variable is assigned a value or it’s deleted respectively. We also assume 0-based indexing.
 
-**Note:** This will make the memory address allocation random. To check the correctness of the program, we will simulate it on a “stack machine”. That is, we won’t check the memory address and symbol mapping, but only the value returned.
 
 ## Class EPPCompiler (eppcompiler.h)
 
@@ -132,8 +132,7 @@ When we do variable assignment in the E++ expressions, we don’t assign the var
 - `int memory_size`: Size of the indexable memory provided to map the symbols. Set during the construction and not changed afterward. It can be assumed that the given size of the indexable memory is always sufficient for the input set of E++ expressions.
 - `string output_file`: The name of the output file in which generated Targ code needs to be dumped.
 - `vector<int> mem_loc`: A vector to maintain the available memory locations.
-- `MinHeap least_mem_loc`: A min-heap to maintain the least available memory indexes. You can ignore this parameter if you are not attempting the Bonus part.
-
+- `MinHeap least_mem_loc`: A min-heap to maintain the least available memory indexes. 
 ### Functions to Implement (in eppcompiler.cpp)
 
 - `compile(vector<vector<string>> code)`: Parses each input tokenized expression, assigns a memory mapping if the expression is a variable assignment or frees up the memory address if it’s a delete statement, and finally compiles the code (i.e., generates and writes all the targ commands to the output file).
@@ -171,7 +170,7 @@ Rather than having a random memory-variable mapping while compiling the code, we
 - `get_min()`: Returns the minimum element in the heap.
 - `pop()`: Deletes the minimum element (which is at root) from the heap.
 
-We will check the memory-variable mapping in the stack machine to check the validity of the min-heap. If you are doing the Bonus section, then use the parameter `least_mem_loc` rather than `mem_loc` in your E++Compiler for mapping.
+
 
 
 
