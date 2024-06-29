@@ -46,7 +46,7 @@ The `ret` node in the expression tree will have the type `RET`.
 
 # Improving the Expression Evaluator
 
-In previous projected , we implemented an expression evaluator for the language E++. For storing the values of variables, we had created a symbol table using Binary Search Trees. What if the BST used to implement the symbol table is unbalanced? The lookup could then be O(n) in the worst case, where n is the number of variables in the program. In turn, n can be as large as the code, which can end up being a huge overhead.
+In previous project , we implemented an expression evaluator for the language E++. For storing the values of variables, we had created a symbol table using Binary Search Trees. What if the BST used to implement the symbol table is unbalanced? The lookup could then be O(n) in the worst case, where n is the number of variables in the program. In turn, n can be as large as the code, which can end up being a huge overhead.
 
 Now task is to convert the BSTs we implemented for into AVL Trees. Note that now each node will no longer store a value since we are not evaluating but compiling the code. Instead, it will store an address, as described below. 
 
