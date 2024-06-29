@@ -1,8 +1,8 @@
 # Complier for language E++
 Note : This project is an extension for the previous one.
-# Things Relevant to previous Project :
+## Things Relevant to previous Project
 ## Old Headers
-Classes `UnlimitedInt` and `UnlimitedRational` are not needed in this assignment (we will be working with `int`s only). Class `Evaluator` is now just `Parser`, no `eval()` function. Additionally, there is support for two new statements in the syntax of E++: `delete` and `return`.
+Classes `UnlimitedInt` and `UnlimitedRational` are not needed in this project (of simplicity, we will be working with `int`s only). Class `Evaluator` is now just `Parser`, no `eval()` function. Additionally, there is support for two new statements in the syntax of E++: `delete` and `return`.
 
 ## Delete Statement
 
@@ -46,11 +46,9 @@ The `ret` node in the expression tree will have the type `RET`.
 
 # Improving the Expression Evaluator
 
-In Assignment 4, you implemented an expression evaluator for the language E++. Recall that for storing the values of variables, you had created a symbol table using Binary Search Trees. What if the BST used to implement the symbol table is unbalanced? The lookup could then be O(n) in the worst case, where n is the number of variables in the program. In turn, n can be as large as the code, which can end up being a huge overhead.
+In previous projected , we implemented an expression evaluator for the language E++. For storing the values of variables, we had created a symbol table using Binary Search Trees. What if the BST used to implement the symbol table is unbalanced? The lookup could then be O(n) in the worst case, where n is the number of variables in the program. In turn, n can be as large as the code, which can end up being a huge overhead.
 
-Your task is to convert the BSTs you implemented for Assignment 4 into AVL Trees. Note that now each node will no longer store a value since we are not evaluating but compiling the code. Instead, it will store an address, as described below. (This decouples it from the Evaluator you implemented in Assignment 4).
-
-**Note:** Future assignments may involve the use of AVL trees; thus, it is strongly advised to do this part sincerely.
+Now task is to convert the BSTs we implemented for into AVL Trees. Note that now each node will no longer store a value since we are not evaluating but compiling the code. Instead, it will store an address, as described below. 
 
 ## The AVL Tree Node Class (symnode.h)
 
@@ -63,7 +61,7 @@ Your task is to convert the BSTs you implemented for Assignment 4 into AVL Trees
 - `SymNode* left`: Pointer to the left child of the node in the symbol table. If it is leaf, then set it to `NULL`.
 - `SymNode* right`: Pointer to the right child of the node in the symbol table. If it is leaf, then set it to `NULL`.
 
-### Functions (OPTIONAL) to Implement (in symnode.cpp)
+### Functions  to Implement (in symnode.cpp)
 
 Any unbalanced tree can be balanced by using simple four rotations. You are free to implement and use these as your helper functions in the symbol table or not use them at all. If you are not going to implement any of the given optional functions, then do not delete their definitions; just write `return NULL` in those.
 
@@ -85,18 +83,18 @@ There is an addition of a new function: `assign_address(string k, int idx)` whic
 
 # Code Generator
 
-In this part, you will actually generate code in the target language Targ. We will assume that Targ will execute on a stack machine, similar to the postfix evaluator you created in Assignment 2.
+In this part, we will actually generate code in the target language Targ. We will assume that Targ will execute on a stack machine.
 
 ## Stack Machine
 
-The code in the target language you generate will assume the following architecture of the stack machine:
+The code in the target language generated will assume the following architecture of the stack machine:
 
 - **Stack:** An infinite memory, with operations providing access to only the top element(s). It is used to store temporary values in the evaluation of expressions.
 - **Memory:** Access to a limited indexable (random-access) memory.
 
 Essentially, the machine will go through the program in the target language Targ, perform some operations on the operands in the stack, and finally store the results in the memory.
 
-**Note:** We are not asking you to implement this stack machine. You just need to generate code for your parse tree in the Targ language assuming it will execute on a stack machine as described.
+**Note:** There is no implement for stack machine. We just need to generate code for parse tree in the Targ language assuming it will execute on a stack machine as described.
 
 ## Targ Syntax
 
@@ -118,7 +116,7 @@ The syntax of the language Targ is given below.
 
 ## Generating the Code
 
-To generate the code in the target language, you will need to recursively iterate over the parse tree you created in Part 2. An example of this is given below:
+To generate the code in the target language, we will need to recursively iterate over the parse tree you created in Part 2.
 
 ## Handling Memory Allocation of Variables
 
@@ -148,9 +146,9 @@ The file will be parsed line by line, strictly following the Targ syntax. All co
 
 ---
 
-# Bonus Section
+# Min-Heap 
 
-Rather than having a random memory-variable mapping while compiling the code, we will now map the variable to the least available memory address (or index). For this, we will use a min-heap. Your task is to implement a general heap that can support duplicates and also follows the properties described in the class.
+Rather than having a random memory-variable mapping while compiling the code, we will now map the variable to the least available memory address (or index). For this, we will use a min-heap. We implement a general heap that can support duplicates and also follows the properties described in the class.
 
 ## Class HeapNode (heapnode.h)
 
