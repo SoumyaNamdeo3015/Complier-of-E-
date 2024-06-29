@@ -2,7 +2,7 @@
 Note : This project is an extension for the previous one.
 ## Things Relevant to previous Project
 ## Old Headers
-Classes `UnlimitedInt` and `UnlimitedRational` are not needed in this project (of simplicity, we will be working with `int`s only). Class `Evaluator` is now just `Parser`, no `eval()` function. Additionally, there is support for two new statements in the syntax of E++: `delete` and `return`.
+Classes `UnlimitedInt` and `UnlimitedRational` are not needed in this project (for simplicity, we will be working with `int`s only). Class `Evaluator` is now just `Parser`, no `eval()` function. Additionally, there is support for two new statements in the syntax of E++: `delete` and `return`.
 
 ## Delete Statement
 
