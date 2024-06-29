@@ -1,0 +1,2 @@
+output file created successfully!
+//this is a comment
